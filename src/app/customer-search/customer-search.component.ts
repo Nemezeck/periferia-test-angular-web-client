@@ -46,7 +46,7 @@ export class CustomerSearchComponent {
               this.error = "Error en la consulta.";
               break;
             default:
-              this.error = 'Failed to fetch customer information.';
+              this.error = 'Fallo en la búsqueda de la información.';
               break;
           }
           this.customerInfo = null;

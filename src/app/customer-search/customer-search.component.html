@@ -1,22 +1,22 @@
 <div class="container">
-    <h1>Customer Information Search</h1>
+    <h1>Consulta de Información de Clientes</h1>
     
     <form [formGroup]="searchForm" (ngSubmit)="searchCustomer()">
       <div class="form-group">
-        <label for="docType">Document Type</label>
+        <label for="docType">Tipo de Documento</label>
         <select id="docType" formControlName="docType" class="form-control">
-          <option value="" disabled selected>Select a document type</option>
+          <option value="" disabled selected>Seleccione un tipo de documento</option>
           <option *ngFor="let type of docTypeOptions" [value]="type.value">{{type.display}}</option>
         </select>
       </div>
       
       <div class="form-group">
-        <label for="docNumber">Document Number</label>
+        <label for="docNumber">Número de documento</label>
         <input type="text" id="docNumber" formControlName="docNumber" class="form-control"
-          placeholder="Enter document number" />
+          placeholder="Ingrese un número de documento" />
       </div>
       
-      <button type="submit" class="btn btn-primary" [disabled]="!searchForm.valid">Search</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!searchForm.valid">Buscar</button>
     </form>
     
     <div *ngIf="customerInfo">
