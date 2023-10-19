@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../customer.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-customer-search',
@@ -16,7 +18,7 @@ export class CustomerSearchComponent {
   customerInfo: any;
   error: string | null = null;
 
-  constructor(private fb: FormBuilder, private customerService: CustomerService) {
+  constructor(private fb: FormBuilder, private customerService: CustomerService, private router : Router) {
     this.searchForm = this.fb.group({
       docType: [null, Validators.required],
       docNumber: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(11), Validators.pattern('^[0-9]*$')]]
@@ -24,12 +26,16 @@ export class CustomerSearchComponent {
   }
 
   searchCustomer() {
+    
     const { docType, docNumber } = this.searchForm.value;
     this.customerService.getCustomerInfo(docType, docNumber)
       .subscribe({
         next: (data : any) => {
+          console.log(data)
           this.customerInfo = data;
           this.error = null;
+          this.customerService.setCustomerData(data);
+          this.router.navigate(['/summary']);
         },
         error: (error : any ) => {
           switch (error.status){
@@ -45,6 +51,7 @@ export class CustomerSearchComponent {
           }
           this.customerInfo = null;
         }
+        
       });
   }
 }

@@ -1,1 +1,19 @@
-<p>customer-summary works!</p>
+<div class="centered-content">
+ <div class="info-container">
+    <h3>Basic Information</h3>
+    
+    <div class="info-row">
+      <label>First Lastname</label>
+      <input type="text" [value]="customerInfo?.firstSurame" readonly>
+    </div>
+  
+    <div class="info-row">
+      <label>First Name</label>
+      <input type="text" [value]="customerInfo?.firstName" readonly>
+    </div>
+  
+    <!-- Add more fields as required -->
+    
+    <button (click)="goBack()">Return</button>
+  </div>
+</div>

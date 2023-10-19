@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CustomerService } from '../customer.service'; // Adjust the path
 
 @Component({
   selector: 'app-customer-summary',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerSummaryComponent implements OnInit {
 
-  constructor() { }
+  error: string | null = null;
+  customerInfo: any;
 
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private customerService: CustomerService,
+  ) { }
+
+  ngOnInit() {
+    this.customerInfo = this.customerService.getCustomerData();
   }
-
+  
+  goBack() {
+    this.router.navigate(['/']);
+  }
 }
+
